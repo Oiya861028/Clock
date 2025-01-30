@@ -62,12 +62,14 @@ def main():
     load_data(directory)
     print("Data loaded.")
 
-    source = person_id_for_name(input("Name: "))
-    if source is None:
-        sys.exit("Person not found.")
-    target = person_id_for_name(input("Name: "))
-    if target is None:
-        sys.exit("Person not found.")
+    source = person_id_for_name(input("Name for First Actor: "))
+    while source is None:
+        print("Person not found.")
+        source = person_id_for_name(input("Try Again:"))
+    target = person_id_for_name(input("Name for Second Actor: "))
+    while target is None:
+        print("Person not found.")
+        target = person_id_for_name(input("Try Again:"))
 
     path = shortest_path(source, target)
 
@@ -131,7 +133,6 @@ def compilePath(node):
     actions.reverse()
     states.reverse()
     solution = list(zip(actions, states))
-    print(solution)
     return solution
 
 
